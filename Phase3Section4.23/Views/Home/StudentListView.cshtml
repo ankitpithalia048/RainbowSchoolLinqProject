@@ -1,0 +1,183 @@
+﻿@using System.Dynamic
+@{
+    ViewData["Title"] = "StudentListView";
+}
+
+<h2>Student Data</h2>
+<div class="container">
+    <br />
+    <h4>List Of Students</h4>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-3">Name</div>
+                <div class="col-sm-3">Email</div>
+                <div class="col-sm-3">Class</div>
+                <div class="col-sm-3">Address </div>
+            </div>
+            <hr />
+            @{
+                List<Student> students = (List<Student>)ViewData["students"];
+                foreach (Student st in students)
+                {
+                    <div class="row">
+                        <div class="col-sm-3">@st.Name</div>
+                        <div class="col-sm-3">@st.Email</div>
+                        <div class="col-sm-3">@st.Class</div>
+                        <div class="col-sm-3">@st.Address </div>
+                    </div>
+                }
+            }
+            <div class="clearfix"></div><br /><br />
+
+            <h4>Total Number of Students - </h4>
+            @{
+                var totalStudent = ViewData["TotalStudents"];
+                @totalStudent
+            }
+            <div class="clearfix"></div><br />
+
+            <h4>Total Number of Subjects - </h4>
+            @{
+                var subjects = ViewData["TotalSubjects"];
+                @subjects
+            }
+            <div class="clearfix"></div><br /><br />
+
+            <h4 class="text-center">Minimum Marks Obtained in Each Subject.</h4>
+            <div class="row">
+                <div class="col-sm-3">Name </div>
+                <div class="col-sm-3">Marks</div>
+
+            </div>
+            <hr />
+            @{
+                IEnumerable<dynamic> minjoin = (IEnumerable<dynamic>)ViewData["MiniMumMarks"];
+
+                foreach (dynamic st in minjoin)
+                {
+
+                    <div class="row">
+                        <div class="col-sm-3"> @st.GetType().GetProperty("Subject").GetValue(st, null) </div>
+                        <div class="col-sm-3">@st.GetType().GetProperty("MinMarks").GetValue(st, null)</div>
+
+                    </div>
+                }
+            }
+            <div class="clearfix"></div><br /><br />
+
+
+            <h4 class="text-center">Maximum Marks Obtained in Each Subject.</h4>
+            <div class="row">
+                <div class="col-sm-3">Name </div>
+                <div class="col-sm-3">Marks</div>
+
+            </div>
+            <hr />
+            @{
+                IEnumerable<dynamic> maxjoin = (IEnumerable<dynamic>)ViewData["MaxMarks"];
+
+                foreach (dynamic st in maxjoin)
+                {
+
+                    <div class="row">
+                        <div class="col-sm-3"> @st.GetType().GetProperty("Subject").GetValue(st, null) </div>
+                        <div class="col-sm-3">@st.GetType().GetProperty("MaxMarks").GetValue(st, null)</div>
+
+                    </div>
+                }
+            }
+            <div class="clearfix"></div><br /><br />
+
+
+            <h4 class="text-center">Average Marks Obtained in Each Subject.</h4>
+            <div class="row">
+                <div class="col-sm-3">Name </div>
+                <div class="col-sm-3">Marks</div>
+
+            </div>
+            <hr />
+            @{
+                IEnumerable<dynamic> avgjoin = (IEnumerable<dynamic>)ViewData["AvgMarks"];
+
+                foreach (dynamic st in avgjoin)
+                {
+
+                    <div class="row">
+                        <div class="col-sm-3"> @st.GetType().GetProperty("Subject").GetValue(st, null) </div>
+                        <div class="col-sm-3">@st.GetType().GetProperty("AvgMarks").GetValue(st, null)</div>
+
+                    </div>
+                }
+            }
+            <div class="clearfix"></div>
+
+           
+<br /><br />
+
+
+            <h4 class="text-center">HighestMarks By Student in Each Subject</h4><br />
+            <div class="row">
+                <div class="col-sm-2">Subject </div>
+                <div class="col-sm-2">Name</div>
+                <div class="col-sm-2">Email</div>
+                <div class="col-sm-2">Address</div>
+                <div class="col-sm-2">Highest Marks </div>
+
+            </div>
+            <hr />
+            @{
+                IEnumerable<dynamic> HighestMarks = (IEnumerable<dynamic>)ViewData["HighestMarks"];
+
+                foreach (dynamic st in HighestMarks)
+                {
+
+                    <div class="row">
+                        <div class="col-sm-2">@st.GetType().GetProperty("Subject").GetValue(st, null)</div>
+                        <div class="col-sm-2"> @st.GetType().GetProperty("Name").GetValue(st, null)</div>
+                        <div class="col-sm-2">@st.GetType().GetProperty("Email").GetValue(st, null)</div>
+                        <div class="col-sm-2">@st.GetType().GetProperty("Address").GetValue(st, null)</div>
+                        <div class="col-sm-2">@st.GetType().GetProperty("Marks").GetValue(st, null)</div>
+
+
+
+                    </div>
+                }
+            }
+            <div class="clearfix"></div><br /><br />
+
+            <h4 class="text-center">Lowest Marks By Student in Each Subject</h4><br />
+            <div class="row">
+                <div class="col-sm-2">Subject </div>
+                <div class="col-sm-2">Name</div>
+                <div class="col-sm-2">Email</div>
+                <div class="col-sm-2">Address</div>
+                <div class="col-sm-2">Lowest Marks </div>
+
+            </div>
+            <hr />
+            @{
+                IEnumerable<dynamic> lowestMarks = (IEnumerable<dynamic>)ViewData["lowestMarks"];
+
+                foreach (dynamic st in lowestMarks)
+                {
+
+                    <div class="row">
+                        <div class="col-sm-2">@st.GetType().GetProperty("Subject").GetValue(st, null)</div>
+                        <div class="col-sm-2"> @st.GetType().GetProperty("Name").GetValue(st, null)</div>
+                        <div class="col-sm-2">@st.GetType().GetProperty("Email").GetValue(st, null)</div>
+                        <div class="col-sm-2">@st.GetType().GetProperty("Address").GetValue(st, null)</div>
+                        <div class="col-sm-2">@st.GetType().GetProperty("Marks").GetValue(st, null)</div>
+
+
+
+                    </div>
+                }
+            }
+            <div class="clearfix"></div><br /><br />
+
+
+
+        </div>
+    </div>
+</div>
